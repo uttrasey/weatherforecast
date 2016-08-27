@@ -1,0 +1,8 @@
+# node lib
+node_modules/
+
+# release build
+build/
+
+# npm garbage
+npm-debug.log
