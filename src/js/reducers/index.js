@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import forecasts from './forecasts';
+import forecast from './forecast';
 
 const weatherApp = combineReducers({
-  forecasts
+  forecast
 })
 
 export default weatherApp;

@@ -1,14 +1,23 @@
 import React from 'react';
-import payload from 'json!./__tests__/data/forecast.json';
 import Forecast from './forecast';
 
-var weather = React.createClass({
+const Weather = React.createClass({
+
+  propTypes: {
+    forecast: React.PropTypes.any
+  },
+
+  getForecast() {
+    return this.props.forecast.list.map((item) => {
+      return <Forecast key={item.dt} data={item} />
+    });
+  },
 
   render() {
     return <div>
-      <Forecast data={payload} />
+      {this.getForecast()}
     </div>;
   }
 });
 
-export default weather;
+export default Weather;

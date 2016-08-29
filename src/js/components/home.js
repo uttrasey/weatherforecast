@@ -1,37 +1,45 @@
 import React from 'react';
 import { Jumbotron } from 'react-bootstrap';
-import { StyleSheet, css } from 'aphrodite';
-import duck from '../../assets/images/duck.png';
 import Weather from './weather';
+import { connect } from 'react-redux';
+import * as WeatherActions from '../actions'
 
-// aphrodite styling
-const styles = StyleSheet.create({
-    red: {
-        backgroundColor: 'pink'
-    },
-    hover: {
-        ':hover': {
-            backgroundColor: 'blue'
-        }
-    },
-    bbb: {
-        backgroundColor: '#ff0000'
+@connect((state) => ({ forecast: state.forecast }), WeatherActions)
+export default class Home extends React.Component {
+
+  componentDidMount() {
+    this.props.getForcast();
+  }
+
+  getForecast() {
+    if (this.props.forecast) {
+      return (
+        <div>
+          <p>Here is the 5 day forecast for London</p>
+          <Weather forecast={this.props.forecast} />
+        </div>
+      );
+    } else {
+      return <div>Loading...</div>
     }
-});
+  }
 
-const Home = () => {
-  return (
-    <div>
-      <Jumbotron id="bbb">
-        <h1>Weather Forecast</h1>
-      </Jumbotron>
-      <div className={css(styles.red, styles.hover)}>
-        <p>Here is the 5 day forecast for London</p>
+  render() {
+    return (
+      <div>
+        <Jumbotron>
+          <h1>Weather Forecast</h1>
+        </Jumbotron>
+        {this.getForecast()}
       </div>
-      <Weather />
-      <img src={duck} />
-    </div>
-  )
+    )
+  }
+
+}
+
+Home.propTypes = {
+  getForcast: React.PropTypes.any,
+  forecast: React.PropTypes.any
 }
 
 export default Home;
