@@ -5,7 +5,7 @@ const apiKey = '718bb9435bf240481fcee0f2fe73525a';
  * Get forecast URL
  */
 const getUrl = location => {
-  return `http://api.openweathermap.org/data/2.5/forecast?q=${location},us&mode=json&appid=${apiKey}`;
+  return `http://api.openweathermap.org/data/2.5/forecast?q=${location}&mode=json&appid=${apiKey}&units=metric`;
 }
 
 /**
