@@ -21,3 +21,5 @@
 - Add in support for failed locations (routing etc.)
 - Allow reloading of weather requests (currently they will cache)
 - Make it prettier... didn't have time for fancy CSS/HTML
+- Sort out API usage... looks like it's set to USA location
+- Sort out router Links that are not displaying active style

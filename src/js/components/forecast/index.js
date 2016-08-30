@@ -3,13 +3,32 @@ import { Jumbotron } from 'react-bootstrap';
 import Weather from './weather';
 import { connect } from 'react-redux';
 import * as WeatherActions from '../../actions'
+import { Link } from 'react-router'
 
-@connect((state) => ({ forecast: state.forecast }), WeatherActions)
+/**
+ * Get the required forecast
+ */
+const mapStateToProps = (state, ownProps) => {
+  const location = ownProps.params.location;
+  return { forecast: state.forecast[location] };
+}
+
+@connect(mapStateToProps, WeatherActions)
 export default class WeatherForecast extends React.Component {
 
   componentDidMount() {
-    const { location } = this.props.params;
-    this.props.getForecast(location);
+    this.getForecastIfNeeded(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getForecastIfNeeded(nextProps);
+  }
+
+  getForecastIfNeeded(props) {
+    const { location } = props.params;
+    if (!props.forecast) {
+      props.getForecast(location);
+    }
   }
 
   getForecast() {
@@ -30,6 +49,12 @@ export default class WeatherForecast extends React.Component {
       <div>
         <Jumbotron>
           <h1>Weather Forecast</h1>
+          <p>Other locations</p>
+          <ul>
+            <li><Link to={'/London'}>London</Link></li>
+            <li><Link to={'/Paris'}>Paris</Link></li>
+            <li><Link to={'/Dublin'}>Dublin</Link></li>
+          </ul>
         </Jumbotron>
         {this.getForecast()}
       </div>
@@ -38,6 +63,7 @@ export default class WeatherForecast extends React.Component {
 
 }
 
+//TODO: be specific
 WeatherForecast.propTypes = {
   getForecast: React.PropTypes.any,
   forecast: React.PropTypes.any,
