@@ -4,7 +4,7 @@
 
 `npm start` // run [local](http://localhost:3000) with hot reload
 
-`npm run build` // bundle minified [production](https://weather.trazyinc.com) code
+`npm run build` // bundle minified [production](http://weather.trazyinc.com) code
 
 ### Architecture Notes
 
