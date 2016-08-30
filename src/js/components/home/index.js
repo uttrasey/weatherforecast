@@ -13,10 +13,7 @@ export default class Home extends React.Component {
         <Jumbotron>
           <h1>Weather Forecast</h1>
         </Jumbotron>
-        <p>Try on of the following weather forecasts</p>
-        <ul>
-          <li><Link to={'/London'}>London</Link></li>
-        </ul>
+        <p>Try one of our weather forecasts by clicking <Link to={'/London'}>here</Link></p>
       </div>
     )
   }
