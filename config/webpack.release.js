@@ -48,7 +48,7 @@ module.exports = {
         new HtmlWebpackPlugin({
           inject: true,
           template: config.paths.appHtml,
-          title: 'ACME business',
+          title: 'Weather forecast',
           minify: {
             removeComments: true,
             collapseWhitespace: true,
