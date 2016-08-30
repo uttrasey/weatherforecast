@@ -4,7 +4,7 @@ import React from 'react';
  * Stateless component to render a single forecast point in time.
  */
 const Forecast = ({data}) => {
-  return <div>Forecast for {data.dt_txt}: min/max {data.main.temp_min}/{data.main.temp_max} </div>;
+  return <div>{data.dt_txt}: {data.main.temp} °C</div>;
 }
 
 Forecast.propTypes = {
