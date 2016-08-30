@@ -2,20 +2,21 @@ import React from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import Weather from './weather';
 import { connect } from 'react-redux';
-import * as WeatherActions from '../actions'
+import * as WeatherActions from '../../actions'
 
 @connect((state) => ({ forecast: state.forecast }), WeatherActions)
-export default class Home extends React.Component {
+export default class WeatherForecast extends React.Component {
 
   componentDidMount() {
-    this.props.getForcast();
+    const { location } = this.props.params;
+    this.props.getForecast(location);
   }
 
   getForecast() {
     if (this.props.forecast) {
       return (
         <div>
-          <p>Here is the 5 day forecast for London</p>
+          <p>Here is the 5 day forecast for { this.props.params.location }</p>
           <Weather forecast={this.props.forecast} />
         </div>
       );
@@ -37,9 +38,10 @@ export default class Home extends React.Component {
 
 }
 
-Home.propTypes = {
-  getForcast: React.PropTypes.any,
-  forecast: React.PropTypes.any
+WeatherForecast.propTypes = {
+  getForecast: React.PropTypes.any,
+  forecast: React.PropTypes.any,
+  params: React.PropTypes.any
 }
 
-export default Home;
+export default WeatherForecast;

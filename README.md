@@ -14,3 +14,10 @@
 - Optioned Aphrodite as I've been meaning to use a JS CSS framework (css modulesesque)
 - Optioned JEST as it's supported very well with React and does a good job
 - Put in an s3 bucket on AWS as I already have a couple of sites + SSL there. Next steps would be putting the JS on CloudFront CDN.
+
+### TODO
+
+- Add in better redux async support for failed requests etc
+- Add in support for failed locations (routing etc.)
+- Allow reloading of weather requests (currently they will cache)
+- Make it prettier... didn't have time for fancy CSS/HTML
