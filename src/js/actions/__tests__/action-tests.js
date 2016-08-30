@@ -14,6 +14,7 @@ describe('actions', () => {
       const dispatchedForecast = dispatch.mock.calls[0];
       expect(dispatchedForecast[0]).toEqual({
         type: 'NEW_FORECAST',
+        location: 'London',
         forecast: {
           some: 'forecast'
         }

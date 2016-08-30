@@ -1,10 +1,12 @@
 /**
  * Maybe think about storing multiple forecasts etc.
  */
-const forecast = (state = null, action) => {
+const forecast = (state = {}, action) => {
   switch (action.type) {
     case 'NEW_FORECAST':
-      return action.forecast
+      const result = Object.assign({}, state);
+      result[action.location] = action.forecast;
+      return result;
     default:
       return state
   }
