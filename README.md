@@ -17,7 +17,9 @@
 
 ### TODO
 
-- Move API calls behind a node proxy.. need to hide the key and stop denial of service.
+- Move API calls behind a node proxy
+ - can use browserHistory
+ - need to hide the key and stop denial of service.
 - Add in better redux async support for failed requests etc
 - Add in support for failed locations (routing etc.)
 - Allow reloading of weather requests (currently they will cache)
