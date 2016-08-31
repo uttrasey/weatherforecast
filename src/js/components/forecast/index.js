@@ -1,6 +1,6 @@
 import React from 'react';
 import { Jumbotron } from 'react-bootstrap';
-import Weather from './weather';
+import FiveDayOutlook from './fiveDayOutlook';
 import { connect } from 'react-redux';
 import * as WeatherActions from '../../actions'
 import { Link } from 'react-router'
@@ -32,16 +32,7 @@ export default class WeatherForecast extends React.Component {
   }
 
   getForecast() {
-    if (this.props.forecast) {
-      return (
-        <div>
-          <p>Here is the 5 day forecast for { this.props.params.location }</p>
-          <Weather forecast={this.props.forecast} />
-        </div>
-      );
-    } else {
-      return <div>Loading...</div>
-    }
+    return this.props.forecast ? <FiveDayOutlook forecast={this.props.forecast} /> : <div>Loading...</div> ;
   }
 
   render() {
@@ -49,7 +40,7 @@ export default class WeatherForecast extends React.Component {
       <div>
         <Jumbotron>
           <h1>Weather Forecast</h1>
-          <p>Other locations</p>
+          <h3>{this.props.params.location}... other locations:</h3>
           <ul>
             <li><Link to={'/London'}>London</Link></li>
             <li><Link to={'/Paris'}>Paris</Link></li>

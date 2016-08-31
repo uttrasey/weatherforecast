@@ -18,6 +18,7 @@
 ### TODO
 
 - SADLY the majority of time was spent getting things setup and CSS/UX was the piece that was neglected... given more time I would make what is functional here look nice
+- More tests
 - Move API calls behind a node proxy
  - can use browserHistory
  - need to hide the key and stop denial of service.
