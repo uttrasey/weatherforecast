@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 // move this somewhere else
 const apiKey = '718bb9435bf240481fcee0f2fe73525a';
 
