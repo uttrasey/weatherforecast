@@ -18,8 +18,8 @@ const Weather = React.createClass({
   /**
    * Generate the forecast cells for a given time.
    */
-  getForecastsFor(time, data) {
-    const values = data.map(day => {
+  getForecastsFor(time) {
+    const values = this.props.forecast.map(day => {
         const timeForecast = day.forecasts[time];
         if (timeForecast) {
           return (
@@ -37,8 +37,7 @@ const Weather = React.createClass({
   },
 
   render() {
-    const weatherData = this.props.forecast;
-    const dayHeadings = weatherData.map(day => {
+    const dayHeadings = this.props.forecast.map(day => {
         return <th key={day.name}>{day.name}</th>;
     });
     return (
@@ -51,30 +50,14 @@ const Weather = React.createClass({
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {this.getForecastsFor('00:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('03:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('06:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('09:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('12:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('15:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('18:00:00', weatherData)}
-          </tr>
-          <tr>
-            {this.getForecastsFor('21:00:00', weatherData)}
-          </tr>
+          <tr>{this.getForecastsFor('00:00:00')}</tr>
+          <tr>{this.getForecastsFor('03:00:00')}</tr>
+          <tr>{this.getForecastsFor('06:00:00')}</tr>
+          <tr>{this.getForecastsFor('09:00:00')}</tr>
+          <tr>{this.getForecastsFor('12:00:00')}</tr>
+          <tr>{this.getForecastsFor('15:00:00')}</tr>
+          <tr>{this.getForecastsFor('18:00:00')}</tr>
+          <tr>{this.getForecastsFor('21:00:00')}</tr>
         </tbody>
       </Table>
       </div>
