@@ -32,7 +32,7 @@ const Weather = React.createClass({
           return <td key={day.name}></td>;
         }
     })
-    values.unshift(<td key={times}>{time}</td>);
+    values.unshift(<td key={time}>{time}</td>);
     return values;
   },
 
