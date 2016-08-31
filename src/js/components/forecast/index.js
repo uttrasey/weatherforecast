@@ -39,8 +39,8 @@ export default class WeatherForecast extends React.Component {
     return (
       <div>
         <Jumbotron>
-          <h1>{this.props.params.location} Weather Forecast</h1>
-          <p>Other locations</p>
+          <h1>Weather Forecast</h1>
+          <h3>{this.props.params.location}... other locations:</h3>
           <ul>
             <li><Link to={'/London'}>London</Link></li>
             <li><Link to={'/Paris'}>Paris</Link></li>
