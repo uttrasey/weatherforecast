@@ -4,9 +4,9 @@
 const forecast = (state = {}, action) => {
   switch (action.type) {
     case 'NEW_FORECAST':
-      const result = Object.assign({}, state);
-      result[action.location] = action.forecast;
-      return result;
+      const newState = Object.assign({}, state);
+      newState[action.location] = action.forecast;
+      return newState;
     default:
       return state
   }
