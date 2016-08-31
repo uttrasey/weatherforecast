@@ -1,6 +1,4 @@
-/**
- * Maybe think about storing multiple forecasts etc.
- */
+
 const forecast = (state = {}, action) => {
   switch (action.type) {
     case 'NEW_FORECAST':
