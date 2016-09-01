@@ -17,7 +17,7 @@
 
 ### TODO
 
-- Polyfil any missing libs (fetch should be ok) but only really tested on Chrome.
+- only really tested on Chrome (fetch/promise should be ok / polyfilled).
 - SADLY the majority of time was spent getting things setup and CSS/UX was the piece that was neglected... given more time I would make what is functional here look nice
 - More tests
 - Move API calls behind a node proxy
