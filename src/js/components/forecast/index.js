@@ -1,17 +1,36 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
 import FiveDayOutlook from './fiveDayOutlook';
+import ForecastHeader from '../general/forecastHeader';
 import { connect } from 'react-redux';
-import * as WeatherActions from '../../actions'
-import { Link } from 'react-router'
+import * as WeatherActions from '../../actions';
+import { renderComponent, branch } from 'recompose';
 
-/**
- * Get the required forecast
- */
 const mapStateToProps = (state, ownProps) => {
     const location = ownProps.params.location;
     return { forecast: state.forecast[location] };
 }
+
+const identity = t => t;
+
+const spinner = () => {
+    return <div>Loading...</div>;
+}
+
+const spinnerWhileLoading = hasLoaded => {
+    return branch(
+        hasLoaded,
+        identity,
+        renderComponent(spinner)
+    );
+}
+
+const enhance = spinnerWhileLoading(props => {
+    return !!props.forecast;
+});
+
+const Forecast = enhance(({ forecast }) =>
+    <FiveDayOutlook forecast={forecast} />
+);
 
 @connect(mapStateToProps, WeatherActions)
 export default class WeatherForecast extends React.Component {
@@ -20,37 +39,25 @@ export default class WeatherForecast extends React.Component {
           this.getForecastIfNeeded(this.props);
       }
 
-  componentWillReceiveProps(nextProps) {
-      this.getForecastIfNeeded(nextProps);
-  }
-
-  getForecastIfNeeded(props) {
-      const { location } = props.params;
-      if (!props.forecast) {
-          props.getForecast(location);
+      componentWillReceiveProps(nextProps) {
+          this.getForecastIfNeeded(nextProps);
       }
-  }
 
-  getForecast() {
-      return this.props.forecast ? <FiveDayOutlook forecast={this.props.forecast} /> : <div>Loading...</div> ;
-  }
+      getForecastIfNeeded(props) {
+          const { location } = props.params;
+          if (!props.forecast) {
+              props.getForecast(location);
+          }
+      }
 
-  render() {
-      return (
-          <div>
-            <Jumbotron>
-              <h1>Weather Forecast</h1>
-              <h3>{this.props.params.location}... other locations:</h3>
-              <ul>
-                <li><Link to={'/London'}>London</Link></li>
-                <li><Link to={'/Paris'}>Paris</Link></li>
-                <li><Link to={'/Dublin'}>Dublin</Link></li>
-              </ul>
-            </Jumbotron>
-            {this.getForecast()}
-          </div>
-      );
-  }
+      render() {
+          return (
+              <div>
+                <ForecastHeader location={this.props.params.location} />
+                <Forecast {...this.props} />
+              </div>
+          );
+      }
 
 }
 

@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import weatherApp from './reducers'
-import Home from './components/home';
+import Home from './components/general/home';
 import Forecast from './components/forecast';
 
 // set up the store with thunk

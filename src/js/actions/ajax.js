@@ -17,6 +17,9 @@ export const fetchForecast = (location) => {
         setTimeout(resolve, 3000);
     })
     .then(() => {
+        console.log('dispatched');
+    })
+    .then(() => {
         return fetch(url).then(response => {
             return response.json();
         });
