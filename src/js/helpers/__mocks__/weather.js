@@ -1,4 +1,2 @@
 
-export const groupForecastsByDay = (forecast) => {
-    return forecast;
-}
+export const groupForecastsByDay = (forecast) => (forecast);
