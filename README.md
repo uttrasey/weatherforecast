@@ -17,12 +17,11 @@
 
 ### TODO
 
-- only really tested on Chrome (fetch/promise should be ok / polyfilled).
 - SADLY the majority of time was spent getting things setup and CSS/UX was the piece that was neglected... given more time I would make what is functional here look nice
 - More tests
 - Move API calls behind a node proxy
- - can use browserHistory
- - need to hide the key and stop denial of service.
+- can use browserHistory
+- need to hide the key and stop denial of service.
 - Add in better redux async support for failed requests etc
 - Add in support for failed locations (routing etc.)
 - Allow reloading of weather requests (currently they will cache)

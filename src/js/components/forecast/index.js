@@ -60,5 +60,3 @@ WeatherForecast.propTypes = {
   forecast: React.PropTypes.any,
   params: React.PropTypes.any
 }
-
-export default WeatherForecast;
