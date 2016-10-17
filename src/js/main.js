@@ -12,16 +12,16 @@ import Forecast from './components/forecast';
 
 // set up the store with thunk
 const store = createStore(
-  weatherApp,
-  applyMiddleware(thunk)
+    weatherApp,
+    applyMiddleware(thunk)
 );
 
 // routing and sharing of the store
 ReactDOM.render((
-  <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path="/" component={Home} />
-      <Route path="/:location" component={Forecast} />
-    </Router>
-  </Provider>
+    <Provider store={store}>
+        <Router history={hashHistory}>
+            <Route path="/" component={Home} />
+            <Route path="/:location" component={Forecast} />
+        </Router>
+    </Provider>
 ), document.getElementById('root'));
