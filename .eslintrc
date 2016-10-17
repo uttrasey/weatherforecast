@@ -27,6 +27,7 @@
     "jsx": true
   },
   "rules": {
+    "indent": [2, 4],
     "comma-dangle": [2, "never"],
     // Allow for double quotes only to avoid escaping single quotes
     "quotes": [2, "single", "avoid-escape"],

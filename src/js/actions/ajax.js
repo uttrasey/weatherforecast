@@ -5,15 +5,15 @@ const apiKey = '718bb9435bf240481fcee0f2fe73525a';
  * Get forecast URL
  */
 const getUrl = location => {
-  return `http://api.openweathermap.org/data/2.5/forecast?q=${location}&mode=json&appid=${apiKey}&units=metric`;
+    return `http://api.openweathermap.org/data/2.5/forecast?q=${location}&mode=json&appid=${apiKey}&units=metric`;
 }
 
 /**
  * @return promise yielding forecast data
  */
 export const fetchForecast = (location) => {
-  const url = getUrl(location);
-  return fetch(url).then(response => {
-    return response.json();
-  });
+    const url = getUrl(location);
+    return fetch(url).then(response => {
+        return response.json();
+    });
 }

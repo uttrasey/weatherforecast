@@ -1,20 +1,16 @@
 import { fetchForecast } from './ajax';
 
+const deliverForecast = (location, forecast) => ({
+    type: 'NEW_FORECAST',
+    location,
+    forecast
+});
+
 /**
  * Get forecast action
  */
 export const getForecast = (location) => {
-  return function (dispatch) {
-    return fetchForecast(location).then(
-      forecast => dispatch(deliverForecast(location, forecast))
-    );
-  };
-}
-
-function deliverForecast(location, forecast) {
-  return {
-    type: 'NEW_FORECAST',
-    location,
-    forecast
-  };
+    return (dispatch) => {
+        return fetchForecast(location).then(forecast => dispatch(deliverForecast(location, forecast)));
+    };
 }
