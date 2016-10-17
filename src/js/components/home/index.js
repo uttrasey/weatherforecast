@@ -15,17 +15,13 @@ const styles = StyleSheet.create({
 /**
  * Screen showing the user how to get a forecast.
  */
-export default class Home extends React.Component {
-
-  render() {
+export default function (props) {
     return (
-      <div>
-        <Jumbotron>
-          <h1>Weather Forecast</h1>
-        </Jumbotron>
-        <p><img className={css(styles.pic)} src={weather} /> Lets take a look at the weather in London by clicking <Link to={'/London'}>here</Link></p>
-      </div>
-    )
-  }
-
+        <div>
+            <Jumbotron>
+            <h1>Weather Forecast</h1>
+            </Jumbotron>
+            <p><img className={css(styles.pic)} src={weather} /> Lets take a look at the weather in London by clicking <Link to={'/London'}>here</Link></p>
+        </div>
+    );
 }
