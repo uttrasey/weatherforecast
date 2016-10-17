@@ -9,60 +9,53 @@ const styles = StyleSheet.create({
     }
 });
 
-const Weather = React.createClass({
+const getForecastsFor = (time, forecast) => {
+    const values = forecast.map(day => {
+        const timeForecast = day.forecasts[time];
+        if (timeForecast) {
+            return (
+                <td key={day.name}>
+                    <Forecast data={timeForecast} />
+                </td>
+            );
+        }
+        else {
+            return <td key={day.name}></td>;
+        }
+    });
+    values.unshift(<td key={time}>{time}</td>);
+    return values;
+}
 
-    propTypes: {
-        forecast: React.PropTypes.any
-    },
+const getDayHeadings = forecast => {
+    return forecast.map(day => <th key={day.name}>{day.name}</th>);
+}
 
-  /**
-   * Generate the forecast cells for a given time.
-   */
-    getForecastsFor(time) {
-        const values = this.props.forecast.map(day => {
-            const timeForecast = day.forecasts[time];
-            if (timeForecast) {
-                return (
-                    <td key={day.name}>
-                        <Forecast data={timeForecast} />
-                    </td>
-                );
-            }
-            else {
-                return <td key={day.name}></td>;
-            }
-        });
-        values.unshift(<td key={time}>{time}</td>);
-        return values;
-    },
-
-    render() {
-        const dayHeadings = this.props.forecast.map(day => {
-            return <th key={day.name}>{day.name}</th>;
-        });
-        return (
-              <div>
-              <Table responsive={true} className={css(styles.table)}>
-                <thead>
-                  <tr>
+const FiveDayOutlook = ({forecast}) => (
+    <div>
+        <Table responsive={true} className={css(styles.table)}>
+            <thead>
+                <tr>
                     <th>Time</th>
-                    {dayHeadings}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>{this.getForecastsFor('00:00:00')}</tr>
-                  <tr>{this.getForecastsFor('03:00:00')}</tr>
-                  <tr>{this.getForecastsFor('06:00:00')}</tr>
-                  <tr>{this.getForecastsFor('09:00:00')}</tr>
-                  <tr>{this.getForecastsFor('12:00:00')}</tr>
-                  <tr>{this.getForecastsFor('15:00:00')}</tr>
-                  <tr>{this.getForecastsFor('18:00:00')}</tr>
-                  <tr>{this.getForecastsFor('21:00:00')}</tr>
-                </tbody>
-              </Table>
-              </div>
-      );
-    }
-});
+                    {getDayHeadings(forecast)}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>{getForecastsFor('00:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('03:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('06:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('09:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('12:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('15:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('18:00:00', forecast)}</tr>
+                <tr>{getForecastsFor('21:00:00', forecast)}</tr>
+            </tbody>
+        </Table>
+    </div>
+);
 
-export default Weather;
+FiveDayOutlook.propTypes = {
+    forecast: React.PropTypes.any
+}
+
+export default FiveDayOutlook;
