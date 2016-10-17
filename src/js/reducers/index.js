@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import forecast from './forecast';
 
 const weatherApp = combineReducers({
-  forecast
+    forecast
 })
 
 export default weatherApp;
