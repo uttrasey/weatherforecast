@@ -2,22 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import * as WeatherActions from '../../actions';
-import FiveDayOutlook from '../../components/forecast/fiveDayOutlook';
-import ForecastHeader from '../../components/general/forecastHeader';
-import spinnerWhileLoading from '../../components/hoc/spinnerWhileLoading';
+import ForecastPage from '../../components/forecast/forecastPage';
 
 const mapStateToProps = (state, ownProps) => {
     const location = ownProps.params.location;
     return { forecast: state.forecast[location] };
 }
-
-const enhance = spinnerWhileLoading(props => {
-    return !!props.forecast;
-});
-
-const Forecast = enhance(({ forecast }) =>
-    <FiveDayOutlook forecast={forecast} />
-);
 
 @connect(mapStateToProps, WeatherActions)
 export default class ForecastContainer extends React.Component {
@@ -38,12 +28,7 @@ export default class ForecastContainer extends React.Component {
       }
 
       render() {
-          return (
-              <div>
-                <ForecastHeader location={this.props.params.location} />
-                <Forecast {...this.props} />
-              </div>
-          );
+          return <ForecastPage {...this.props} />;
       }
 
 }
