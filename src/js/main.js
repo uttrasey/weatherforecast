@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 
 import weatherApp from './reducers'
 import Home from './components/general/homePage';
-import Forecast from './components/forecast';
+import Forecast from './containers/forecast/forecast';
 
 // set up the store with thunk
 const store = createStore(

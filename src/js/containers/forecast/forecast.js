@@ -1,27 +1,14 @@
 import React from 'react';
-import FiveDayOutlook from './fiveDayOutlook';
-import ForecastHeader from '../general/forecastHeader';
 import { connect } from 'react-redux';
+
 import * as WeatherActions from '../../actions';
-import { renderComponent, branch } from 'recompose';
+import FiveDayOutlook from '../../components/forecast/fiveDayOutlook';
+import ForecastHeader from '../../components/general/forecastHeader';
+import spinnerWhileLoading from '../../components/hoc/spinnerWhileLoading';
 
 const mapStateToProps = (state, ownProps) => {
     const location = ownProps.params.location;
     return { forecast: state.forecast[location] };
-}
-
-const identity = t => t;
-
-const spinner = () => {
-    return <div>Loading...</div>;
-}
-
-const spinnerWhileLoading = hasLoaded => {
-    return branch(
-        hasLoaded,
-        identity,
-        renderComponent(spinner)
-    );
 }
 
 const enhance = spinnerWhileLoading(props => {
@@ -33,7 +20,7 @@ const Forecast = enhance(({ forecast }) =>
 );
 
 @connect(mapStateToProps, WeatherActions)
-export default class WeatherForecast extends React.Component {
+export default class ForecastContainer extends React.Component {
 
       componentDidMount() {
           this.getForecastIfNeeded(this.props);
@@ -61,7 +48,7 @@ export default class WeatherForecast extends React.Component {
 
 }
 
-WeatherForecast.propTypes = {
+ForecastContainer.propTypes = {
     getForecast: React.PropTypes.any,
     forecast: React.PropTypes.any,
     params: React.PropTypes.any
