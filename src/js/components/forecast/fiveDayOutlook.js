@@ -2,7 +2,7 @@ import React from 'react';
 import Forecast from './forecast';
 import { Table } from 'react-bootstrap';
 import { StyleSheet, css } from 'aphrodite';
-import spinnerWhileLoading from '../hoc/spinnerWhileLoading';
+import { spinnerWhileLoading } from '../hoc';
 
 const styles = StyleSheet.create({
     table: {
@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     }
 });
 
+//TODO: move data checking down a layer
 const getForecastsFor = (time, forecast) => {
     const values = forecast.map(day => {
         const timeForecast = day.forecasts[time];
@@ -20,9 +21,9 @@ const getForecastsFor = (time, forecast) => {
                 </td>
             );
         }
-        else {
-            return <td key={day.name}></td>;
-        }
+        return (
+            <td key={day.name}></td>
+        );
     });
     values.unshift(<td key={time}>{time}</td>);
     return values;
