@@ -37,11 +37,7 @@ const hasLoaded = props => props.forecast;
 
 const enhance = spinnerWhileLoading(hasLoaded);
 
-const EnhancedFiveDayOutlook = enhance(({ forecast }) =>
-    <FiveDayOutlook forecast={forecast} />
-);
-
-const FiveDayOutlook = ({forecast}) => (
+const FiveDayOutlook = enhance(({forecast}) => (
     <div>
         <Table responsive={true} className={css(styles.table)}>
             <thead>
@@ -62,10 +58,10 @@ const FiveDayOutlook = ({forecast}) => (
             </tbody>
         </Table>
     </div>
-);
+));
 
 FiveDayOutlook.propTypes = {
     forecast: React.PropTypes.any
 }
 
-export default EnhancedFiveDayOutlook;
+export default FiveDayOutlook;
