@@ -14,9 +14,7 @@ const Forecast = enhance(({data}) => {
 Forecast.propTypes = {
     data: React.PropTypes.shape({
         main: React.PropTypes.shape({
-            temp: React.PropTypes.number.isRequired,
-            temp_min: React.PropTypes.number.isRequired,
-            temp_max: React.PropTypes.number.isRequired
+            temp: React.PropTypes.number.isRequired
         }),
         weather: React.PropTypes.array
     }).isRequired
