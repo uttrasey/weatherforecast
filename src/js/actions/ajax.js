@@ -14,7 +14,7 @@ const getUrl = location => {
 export const fetchForecast = (location) => {
     const url = getUrl(location);
     return new Promise((resolve, reject) => {
-        setTimeout(resolve, 1500);
+        setTimeout(resolve, 300);
     })
     .then(() => {
         return fetch(url).then(response => {

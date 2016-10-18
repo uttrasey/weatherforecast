@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     }
 });
 
-//TODO: use branch and RenderNothing
 const getForecastsFor = (time, forecast) => {
     const values = forecast.map(day => {
         const timeForecast = day.forecasts[time];
