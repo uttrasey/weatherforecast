@@ -2,6 +2,7 @@ import React from 'react';
 import Forecast from './forecast';
 import { Table } from 'react-bootstrap';
 import { StyleSheet, css } from 'aphrodite';
+import spinnerWhileLoading from '../hoc/spinnerWhileLoading';
 
 const styles = StyleSheet.create({
     table: {
@@ -9,6 +10,7 @@ const styles = StyleSheet.create({
     }
 });
 
+//TODO: use branch and RenderNothing
 const getForecastsFor = (time, forecast) => {
     const values = forecast.map(day => {
         const timeForecast = day.forecasts[time];
@@ -30,6 +32,14 @@ const getForecastsFor = (time, forecast) => {
 const getDayHeadings = forecast => {
     return forecast.map(day => <th key={day.name}>{day.name}</th>);
 }
+
+const hasLoaded = props => props.forecast;
+
+const enhance = spinnerWhileLoading(hasLoaded);
+
+const EnhancedFiveDayOutlook = enhance(({ forecast }) =>
+    <FiveDayOutlook forecast={forecast} />
+);
 
 const FiveDayOutlook = ({forecast}) => (
     <div>
@@ -58,4 +68,4 @@ FiveDayOutlook.propTypes = {
     forecast: React.PropTypes.any
 }
 
-export default FiveDayOutlook;
+export default EnhancedFiveDayOutlook;
