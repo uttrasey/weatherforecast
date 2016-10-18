@@ -1,7 +1,8 @@
 import React from 'react';
 import { nothingWhileLoading } from '../hoc';
+import { prop } from 'ramda';
 
-const hasLoaded = props => props.data;
+const hasLoaded = prop('data');
 
 const enhance = nothingWhileLoading(hasLoaded);
 
