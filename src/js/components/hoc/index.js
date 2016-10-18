@@ -1,7 +1,6 @@
 import { renderComponent, renderNothing, branch } from 'recompose';
+import { identity } from 'ramda';
 import Spinner from '../general/spinner';
-
-const identity = t => t;
 
 /**
  * HOC to render a spinner until condition is met
