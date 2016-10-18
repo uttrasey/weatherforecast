@@ -2,6 +2,8 @@ import React from 'react';
 import Forecast from './forecast';
 import { Table } from 'react-bootstrap';
 import { StyleSheet, css } from 'aphrodite';
+import { spinnerWhileLoading } from '../hoc';
+import { prop } from 'ramda';
 
 const styles = StyleSheet.create({
     table: {
@@ -10,19 +12,11 @@ const styles = StyleSheet.create({
 });
 
 const getForecastsFor = (time, forecast) => {
-    const values = forecast.map(day => {
-        const timeForecast = day.forecasts[time];
-        if (timeForecast) {
-            return (
-                <td key={day.name}>
-                    <Forecast data={timeForecast} />
-                </td>
-            );
-        }
-        else {
-            return <td key={day.name}></td>;
-        }
-    });
+    const values = forecast.map(day => (
+        <td key={day.name}>
+            <Forecast data={day.forecasts[time]} />
+        </td>
+    ));
     values.unshift(<td key={time}>{time}</td>);
     return values;
 }
@@ -31,7 +25,11 @@ const getDayHeadings = forecast => {
     return forecast.map(day => <th key={day.name}>{day.name}</th>);
 }
 
-const FiveDayOutlook = ({forecast}) => (
+const hasLoaded = prop('forecast');
+
+const enhance = spinnerWhileLoading(hasLoaded);
+
+const FiveDayOutlook = enhance(({forecast}) => (
     <div>
         <Table responsive={true} className={css(styles.table)}>
             <thead>
@@ -52,7 +50,7 @@ const FiveDayOutlook = ({forecast}) => (
             </tbody>
         </Table>
     </div>
-);
+));
 
 FiveDayOutlook.propTypes = {
     forecast: React.PropTypes.any
