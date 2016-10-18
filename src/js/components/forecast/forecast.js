@@ -1,12 +1,14 @@
 import React from 'react';
+import { nothingWhileLoading } from '../hoc';
 
-/**
- * Stateless component to render a single forecast point in time.
- */
-const Forecast = ({data}) => {
+const hasLoaded = props => props.data;
+
+const enhance = nothingWhileLoading(hasLoaded);
+
+const Forecast = enhance(({data}) => {
     const icon = data.weather[0].icon;
     return <div><img src={`http://openweathermap.org/img/w/${icon}.png`} /> {data.main.temp} °C</div>;
-}
+});
 
 Forecast.propTypes = {
     data: React.PropTypes.shape({
@@ -17,7 +19,6 @@ Forecast.propTypes = {
         }),
         weather: React.PropTypes.array
     }).isRequired
-
 }
 
 export default Forecast;

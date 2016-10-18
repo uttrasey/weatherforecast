@@ -13,4 +13,4 @@ export const spinnerWhileLoading = (hasLoaded) =>
  * HOC to render nothing until condition is met
  */
 export const nothingWhileLoading = (hasLoaded) =>
-    branch(hasLoaded, identity, renderNothing());
+    branch(hasLoaded, identity, renderNothing);

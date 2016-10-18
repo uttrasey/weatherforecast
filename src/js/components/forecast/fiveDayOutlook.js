@@ -10,21 +10,12 @@ const styles = StyleSheet.create({
     }
 });
 
-//TODO: move data checking down a layer
 const getForecastsFor = (time, forecast) => {
-    const values = forecast.map(day => {
-        const timeForecast = day.forecasts[time];
-        if (timeForecast) {
-            return (
-                <td key={day.name}>
-                    <Forecast data={timeForecast} />
-                </td>
-            );
-        }
-        return (
-            <td key={day.name}></td>
-        );
-    });
+    const values = forecast.map(day => (
+        <td key={day.name}>
+            <Forecast data={day.forecasts[time]} />
+        </td>
+    ));
     values.unshift(<td key={time}>{time}</td>);
     return values;
 }
